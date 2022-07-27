@@ -6,26 +6,24 @@
 /*   By: ywadday <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 19:06:17 by ywadday           #+#    #+#             */
-/*   Updated: 2022/07/27 19:40:34 by ywadday          ###   ########.fr       */
+/*   Updated: 2022/07/27 22:56:10 by ywadday          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_each_philo    *create_philos(in num)
+t_each_philo	*create_philos(int num)
 {
-    int     i;
-    pthread_t *thread;
-    t_each_philo *philos;
-
-    i = 0;
-    philos = (t_each_philo *)malloc(sizeof(t_each_philo) * num);
-    while (i < num)
-    {
-        thread = (pthread_t *)malloc(sizeof(pthread_t *)); 
-        philos[i]->id = i;
-        philos[i]->fork = -1;
-        philos[i++]->thread = thread;
-    }
-    return (philos);
+	int				i;
+	t_each_philo	*philos;
+	
+	i = 0;
+	philos = (t_each_philo *)malloc(sizeof(t_each_philo) * num);
+	while (i < num)
+	{
+		philos[i].id = i + 1;
+		philos[i].fork = 0;
+		philos[i++].thread = (pthread_t *)malloc(sizeof(pthread_t *)); 
+	}
+	return (philos);
 }
