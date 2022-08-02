@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywadday <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ywadday <ywadday@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:17:17 by ywadday           #+#    #+#             */
-/*   Updated: 2022/07/27 19:40:54 by ywadday          ###   ########.fr       */
+/*   Updated: 2022/08/02 23:02:30 by ywadday          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <pthread.h>
 
 typedef struct s_philo{
+    int id;
     int number_of_philosophers;
     int time_to_die;
     int time_to_eat;
@@ -26,14 +27,8 @@ typedef struct s_philo{
     int number_of_times_each_philosopher_must_eat;
 }t_philo;
 
-typedef struct s_each_philo{
-	int			id;
-	int			fork;
-	pthread_t	thread;
-}t_each_philo;
-
-void			init_philo(t_philo *philo);
-int				ft_atoi(char *str);
-t_each_philo    *create_philos(in num);
+void    init_philos(t_philo *philos, int ac, char **av);
+int     ft_atoi(char *str);
+int     create_philos(pthread_t	*threads, t_philo *philos, int size);
 
 #endif
