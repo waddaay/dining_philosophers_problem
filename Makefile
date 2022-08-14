@@ -6,7 +6,7 @@
 #    By: ywadday <ywadday@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 20:20:42 by ywadday           #+#    #+#              #
-#    Updated: 2022/08/13 20:23:14 by ywadday          ###   ########.fr        #
+#    Updated: 2022/08/14 01:12:42 by ywadday          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,4 +38,4 @@ clean :
 fclean : clean
 	rm -rf $(NAME)
 
-re : fclean all
+re : fclean all 
