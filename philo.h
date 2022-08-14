@@ -6,7 +6,7 @@
 /*   By: ywadday <ywadday@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:17:17 by ywadday           #+#    #+#             */
-/*   Updated: 2022/08/09 19:06:33 by ywadday          ###   ########.fr       */
+/*   Updated: 2022/08/14 00:59:17 by ywadday          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,32 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-#include <pthread.h>
+# include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_mutex{
-	pthread_mutex_t *mutex;
+	pthread_mutex_t	*mutex;
+	long			current_time;
+	int				finished;
+	pthread_mutex_t	print;
 }t_mutex;
 
 typedef struct s_philo{
-	int	id;
-	int	number_of_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	number_of_times_each_philosopher_must_eat;
-	t_mutex *mtx;
+	int		id;
+	int		n;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		must_eat;
+	t_mutex	*mtx;
+	long	last_meal;
 }t_philo;
 
-int init_philos(t_philo *philos, int ac, char **av, t_mutex *mutex);
+int		init_philos(t_philo *philos, int ac, char **av, t_mutex *mutex);
 int		ft_atoi(char *str);
-int		create_philos(pthread_t	**threads, t_philo **philos, int size);
-int		check_args(int argc, char **argv);
-
+int		create_philos(pthread_t	**threads, t_philo **philos,
+			t_mutex **mutex, int size);
+long	getime(void);
+void	print(long time, t_philo philo, char *str);
+void	ft_usleep(long time);
 #endif
